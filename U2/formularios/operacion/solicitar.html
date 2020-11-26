@@ -14,14 +14,16 @@
         </nav>
         <section>
             <h2>Solicitar</h2>
-        <form>
+        <form method="POST" target="../php/solicitar.php">
             <input type="hidden" name="id" value="1">
-            Alimento: <input type="text" value="" placeholder="alimento">
+            Alimento: <input type="text" name="alimento" value="" placeholder="alimento">
             <br/>
-            Cantidad: <input type="number" value="" placeholder="0.0">
+            Cantidad: <input type="number" name="cantidad" value="" placeholder="0.0">
+            <br/>
+            Fecha a recolectar: <input type="date" name="fecha">
             <br/>
             Notas
-            <textarea></textarea>
+            <textarea name="notas"></textarea>
         </form>
         </section>
         <footer style="font-size: smaller; text-align: center;">

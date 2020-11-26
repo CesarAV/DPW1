@@ -14,16 +14,18 @@
         </nav>
         <section>
             <h2>Donar</h2>
-        <form>
+        <form method="POST" action="../php/donar.php">
             <input type="hidden" name="id" value="1">
-            Alimento: <input type="text" value="" placeholder="alimento">
+            Alimento: <input type="text" name="alimento" value="" placeholder="alimento">
             <br/>
-            Cantidad: <input type="number" value="" placeholder="0.0">
+            Cantidad: <input type="number" name="cant" value="" placeholder="0.0">
             <br/>
-            Fecha de caducidad: <input type="date" value="">
+            Fecha de caducidad: <input type="date" name="fecha-caducidad" value="">
             <br/>
             Notas
-            <textarea></textarea>
+            <textarea name="notas" ></textarea>
+            <br/>
+            <input type="submit" value="Guardar">
         </form>
         </section>
         <footer style="font-size: smaller; text-align: center;">

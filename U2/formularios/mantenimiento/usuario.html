@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es-MX">
     <head>
-
+        <meta charset="utf-8">
     </head>
     <body>
         <header>
@@ -14,18 +14,20 @@
         </nav>
         <section>
             <h2>Usuario</h2>
-        <form>
+        <form method="POST" action="../php/usuario.php">
             <input type="hidden" name="id" value="1">
-            Nombre: <input type="text" value="" placeholder="nombre">
+            Nombre: <input type="text" name="nombre" value="" placeholder="nombre">
             <br/>
-            Contraseña: <input type="text" value="" placeholder="contraseña">
+            Contraseña: <input type="text" name="contra" value="" placeholder="contraseña">
             <br/>
-            Teléfono: <input type="text" value="" pattern="123-123-1234" placeholder="123-123-1234">
+            Teléfono: <input type="text" name="tel" value="" placeholder="###-###-####">
             <br/>
-            Correo electrónico: <input type="text" value="" placeholder="nombre@gmail.com">
+            Correo electrónico: <input type="text" name="email" value="" placeholder="nombre@gmail.com">
             <br/>
             Notas
-            <textarea></textarea>
+            <textarea name="notas"></textarea>
+            <br>
+            <input type="submit" value="Aceptar">
         </form>
         </section>
         <footer style="font-size: smaller; text-align: center;">
