@@ -35,3 +35,16 @@ function validarTexto(ctrl, requerido) {
 
     return true; // pasó las validaciones
 }
+
+function validarUsuario(){
+    // Nombre debe ser texto
+    let ctrlNombre = document.getElementById('nombre');
+    if(!validarTexto(ctrlNombre)){
+        return false;
+    }
+    // Telefono debe ser numerico
+    let ctrlTel = document.getElementById('tel');
+    if(!validarEntero(ctrlTel)){
+        return false;
+    }
+}

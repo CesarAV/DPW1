@@ -1,7 +1,14 @@
 <!DOCTYPE html>
+<?php
+    if (isset($_GET['id'])){
+        $id=intval($_GET['id']);
+    } else {
+        header("location:usuario.php");
+    }
+?>
 <html lang="es-MX">
     <head>
-        <title>Usuario</title>
+        <title>Actualizar usuario</title>
         <?php
             // elementos comunes del cuerpo 
             include('../head-interno.html');
@@ -34,23 +41,25 @@
 
             $usuario = new Database();
             if(isset($_POST) && !empty($_POST)){
+                // Guardar datos de post
                 $nombre = $usuario->sanitize($_POST['nombre']);
                 $contra = $_POST['contra'];
                 $tel = $_POST['tel'];
                 $email = $usuario->sanitize($_POST['email']);;
                 $notas = $usuario->sanitize($_POST['notas']);;
 
-                $res = $usuario->crearUsuario($nombre, 
+                $res = $usuario->actualizarUsuario($id,
+                    $nombre, 
                     $contra,
                     $tel,
                     $email,
                     $notas);
 
                     if($res){
-                        $message= "Datos insertados con éxito";
+                        $message= "Datos guardados con éxito";
                         $class="alert alert-success";
                     }else{
-                        $message="No se pudieron insertar los datos";
+                        $message="No se pudieron guardar los datos";
                         $class="alert alert-danger";
                     }
             ?>
@@ -59,13 +68,15 @@
             </div>
             <?php
                 }
+
+                $datos_usuario=$usuario->registroUsuario($id);
             ?>
         <section>
             <div class="container">
                 <div class="table-wrapper">
                     <div class="table-title">
                         <div class="row">
-                        <div class="col-sm-8"><h2>Nuevo <b>Usuario</b></h2></div>
+                        <div class="col-sm-8"><h2>Actualizar <b>Usuario</b></h2></div>
                         <div class="col-sm-4">
                             <a href="usuario.php" class="btn btn-info add-new"><i class="fas fa-arrow-left"></i> Regresar</a>
                         </div>
@@ -74,12 +85,12 @@
 
                     <div class="row">
                     <?php
-                        $id = 0;
-                        $nombre = "";
-                        $contra = "";
-                        $tel = "";
-                        $email = "";
-                        $notas = "";
+                        $id = $datos_usuario->id;
+                        $nombre = $datos_usuario->Nombre;
+                        $contra = $datos_usuario->Contrasenia;
+                        $tel = $datos_usuario->Telefono;
+                        $email = $datos_usuario->CorreoElectronico;
+                        $notas = $datos_usuario->Notas;
                         // Forma común de edicion
                         include('form-usuario.php');
                     ?>

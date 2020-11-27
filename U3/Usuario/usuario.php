@@ -5,7 +5,18 @@
     <?php
             // elementos comunes del cuerpo 
             include('../head-interno.html');
+            include('../database.php');
+
+            $usuarios = new Database();
+            $listado=$usuarios->leerUsuarios();
         ?>
+        <script>
+            function eliminar(id, nombre){
+                if(confirm(`¿Está seguro de eliminar el usuario ${nombre}?`)) {
+                    window.location = "eliminar.php?id=" + id;
+                }
+            }
+        </script>
     </head>
     <body>        
         <?php
@@ -14,7 +25,6 @@
             include('../menu.php');
         ?>
         <section>
-            <h3>Usuario</h3>
             <div class="container">
                 <div class="table-wrapper">
                     <div class="table-title">
@@ -29,12 +39,38 @@
                     <thead>
                         <tr>
                         <th>Nombre</th>
-                        <th>Dirección</th>
+                        <th>Correo</th>
+                        <th>Notas</th>
                         <th>Acciones</th>
                         </tr>
                     </thead>
 
                     <tbody>
+                        <?php
+                            while ($row=mysqli_fetch_object($listado)){
+                                $id=$row->id;
+                                $nombre=$row->Nombre;
+                                $correo=$row->CorreoElectronico;
+                                $notas=$row->Notas;
+                            ?>
+                        <tr>
+                        <td><?php echo $nombre;?></td>
+                        <td><?php echo $correo;?></td>
+                        <td><?php echo $notas;?></td>
+                        <td>
+                            <a href="actualizar.php?id=<?php echo $id;?>"
+                                class="edit" title="Editar" data-toggle="tooltip">
+                                <i class="material-icons">&#xE254;</i>
+                            </a>
+                            <a href="javascript:eliminar(<?php echo $id;?>, '<?php echo $nombre;?>');"
+                                class="delete" title="Eliminar" data-toggle="tooltip">
+                                <i class="material-icons">&#xE872;</i>
+                            </a>
+                        </td>
+                        </tr>
+                        <?php
+                        }
+                        ?> 
                     </tbody>
                     </table>
                 </div>
